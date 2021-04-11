@@ -34,11 +34,13 @@ type EnvironmentData struct {
 	APITokens      map[Facade]string `json:"ApiTokens"`
 }
 
+type BitPayConfiguration struct {
+	Environment Environment                     `json:"Environment"`
+	EnvConfig   map[Environment]EnvironmentData `json:"EnvConfig"`
+}
+
 type BitpayData struct {
-	BitPayConfiguration struct {
-		Environment Environment                     `json:"Environment"`
-		EnvConfig   map[Environment]EnvironmentData `json:"EnvConfig"`
-	} `json:"BitPayConfiguration"`
+	BitPayConfiguration BitPayConfiguration `json:"BitPayConfiguration"`
 }
 
 func (b BitpayData) GetEnvURL() string {
@@ -70,6 +72,22 @@ func (b BitpayData) GetToken(f Facade) string {
 		return v.APITokens[f]
 	}
 	return b.BitPayConfiguration.EnvConfig[Test].APITokens[f]
+}
+
+func LoadFromArgs(env Environment, f Facade, privateKey, token string) BitpayData {
+	return BitpayData{
+		BitPayConfiguration: BitPayConfiguration{
+			Environment: env,
+			EnvConfig: map[Environment]EnvironmentData{
+				env: {
+					PrivateKey: privateKey,
+					APITokens: map[Facade]string{
+						f: token,
+					},
+				},
+			},
+		},
+	}
 }
 
 func LoadFromString(s string) (BitpayData, error) {
