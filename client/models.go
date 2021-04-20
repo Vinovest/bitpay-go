@@ -149,7 +149,7 @@ type Invoice struct {
 	CurrentTime                    int64                                         `json:"currentTime"`
 	ID                             string                                        `json:"id"`
 	LowFeeDetected                 bool                                          `json:"lowFeeDetected"`
-	AmountPaid                     int64                                         `json:"amountPaid"`
+	AmountPaid                     float64                                       `json:"amountPaid"`
 	DisplayAmountPaid              string                                        `json:"displayAmountPaid"`
 	ExceptionStatus                bool                                          `json:"exceptionStatus"`
 	TargetConfirmations            int                                           `json:"targetConfirmations"`
