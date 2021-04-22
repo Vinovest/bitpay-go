@@ -44,6 +44,7 @@ func New(c config.BitpayData, f config.Facade) *Client {
 
 // CreateInvoice returns an invoice type or pass the error from the server. The method will create an invoice on the BitPay server.
 func (c *Client) CreateInvoice(payload InvoiceCreation) (Invoice, error) {
+	payload.Token = c.config.GetToken(c.facade)
 	response, _ := c.post("invoices", payload)
 	i := Invoice{}
 	err := handleResponse(response, &i)
@@ -152,6 +153,7 @@ func (c *Client) post(path string, body interface{}) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println(url)
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
 	if err != nil {
 		return nil, err
