@@ -140,7 +140,7 @@ type Invoice struct {
 	URL                            string                                        `json:"url"`
 	PosData                        string                                        `json:"posData"`
 	Status                         string                                        `json:"status"`
-	Price                          int                                           `json:"price"`
+	Price                          float64                                       `json:"price"`
 	Currency                       string                                        `json:"currency"`
 	ItemDesc                       string                                        `json:"itemDesc"`
 	OrderID                        string                                        `json:"orderId"`
