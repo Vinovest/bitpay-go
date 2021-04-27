@@ -67,14 +67,14 @@ type ExRates struct {
 	XRP  decimal.Decimal `json:"XRP"`
 }
 type Transactions struct {
-	Amount        int64     `json:"amount"`
-	Confirmations int       `json:"confirmations"`
-	Time          time.Time `json:"time"`
-	ReceivedTime  time.Time `json:"receivedTime"`
-	Txid          string    `json:"txid"`
-	ExRates       ExRates   `json:"exRates"`
-	Type          string    `json:"type,omitempty"`
-	RefundAmount  int64     `json:"refundAmount,omitempty"`
+	Amount        decimal.Decimal `json:"amount"`
+	Confirmations decimal.Decimal `json:"confirmations"`
+	Time          time.Time       `json:"time"`
+	ReceivedTime  time.Time       `json:"receivedTime"`
+	Txid          string          `json:"txid"`
+	ExRates       ExRates         `json:"exRates"`
+	Type          string          `json:"type,omitempty"`
+	RefundAmount  decimal.Decimal `json:"refundAmount,omitempty"`
 }
 
 type EnabledCurrency struct {
@@ -109,8 +109,8 @@ type BuyerProvidedInfo struct {
 }
 
 type MinerFee struct {
-	SatoshisPerByte int `json:"satoshisPerByte"`
-	TotalFee        int `json:"totalFee"`
+	SatoshisPerByte decimal.Decimal `json:"satoshisPerByte"`
+	TotalFee        decimal.Decimal `json:"totalFee"`
 }
 
 type Shopper struct {
@@ -152,7 +152,7 @@ type Invoice struct {
 	AmountPaid                     float64                                       `json:"amountPaid"`
 	DisplayAmountPaid              string                                        `json:"displayAmountPaid"`
 	ExceptionStatus                bool                                          `json:"exceptionStatus"`
-	TargetConfirmations            int                                           `json:"targetConfirmations"`
+	TargetConfirmations            decimal.Decimal                               `json:"targetConfirmations"`
 	Transactions                   []Transactions                                `json:"transactions"`
 	TransactionSpeed               string                                        `json:"transactionSpeed"`
 	Buyer                          Buyer                                         `json:"buyer"`
