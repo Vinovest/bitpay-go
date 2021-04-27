@@ -2,7 +2,6 @@ package client
 
 import (
 	"encoding/json"
-	"errors"
 	"time"
 
 	"github.com/shopspring/decimal"
@@ -25,22 +24,6 @@ type InvoiceCreation struct {
 	Buyer                 Buyer  `json:"buyer,omitempty"`
 	PosData               string `json:"posData,omitempty"`
 	ItemDesc              string `json:"itemDesc,omitempty"`
-}
-
-func (i InvoiceCreation) validate() error {
-	if i.Currency == "" {
-		return errors.New("Need to specify a currency")
-	}
-
-	if i.Price <= 0 {
-		return errors.New("Invalid price")
-	}
-
-	if i.Token == "" {
-		return errors.New("No token set")
-	}
-
-	return nil
 }
 
 type InvoicePayload struct {
