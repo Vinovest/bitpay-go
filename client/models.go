@@ -134,7 +134,7 @@ type Invoice struct {
 	LowFeeDetected                 bool                                          `json:"lowFeeDetected"`
 	AmountPaid                     float64                                       `json:"amountPaid"`
 	DisplayAmountPaid              string                                        `json:"displayAmountPaid"`
-	ExceptionStatus                bool                                          `json:"exceptionStatus"`
+	ExceptionStatus                interface{}                                   `json:"exceptionStatus"`
 	TargetConfirmations            decimal.Decimal                               `json:"targetConfirmations"`
 	Transactions                   []Transactions                                `json:"transactions"`
 	TransactionSpeed               string                                        `json:"transactionSpeed"`
